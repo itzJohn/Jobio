@@ -14,7 +14,6 @@ profileController.getJobs = async (req, res, next) => {
   }
 };
 
-
 profileController.createCard = (req, res, next) => {
   try {
     const {title, location, company} = req.body;
@@ -28,4 +27,15 @@ profileController.createCard = (req, res, next) => {
   }
 };
 
+profileController.updateStatus = async (req, res, next) => {
+  try {
+    await Job.findOneAndUpdate(req.query, req.body);
+    return next();
+  } catch (error) {
+    return next({
+      log: `profileController.updateStatus: ERROR: ${error}`,
+      message: { error },
+    });
+  }
+};
 module.exports = profileController;

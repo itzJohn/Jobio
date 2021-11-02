@@ -33,11 +33,11 @@ router.post('/addCard',
   (req, res) => res.status(200).send("Job has been added")
 );
 
-// Update a card
-// router.put('/updateCard',
-//   starWarsController.addCharacter,
-//   (req, res) => res.sendStatus(200)
-// );
+// Update a card's status
+router.put('/updateStatus',
+  profileController.updateStatus,
+  (req, res) => res.status(200).send("Updated the Status")
+);
 
 
 // // Delete a card
