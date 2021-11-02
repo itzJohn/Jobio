@@ -38,4 +38,16 @@ profileController.updateStatus = async (req, res, next) => {
     });
   }
 };
+
+profileController.removeCard = async (req, res, next) => {
+  try {
+    await Job.findOneAndRemove(req.query);
+    return next();
+  } catch (error) {
+    return next({
+      log: `profileController.removeCard: ERROR: ${error}`,
+      message: { error },
+    });
+  }
+};
 module.exports = profileController;

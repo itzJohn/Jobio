@@ -9,41 +9,22 @@ profileController.getJobs,
   (req, res) => res.status(200).json(res.locals.jobs)
 );
 
-// Get all the cards with the status set to applied 
-// router.get('/applied',
-//   starWarsController.getSpecies,
-//   (req, res) => res.status(200).json(res.locals.species)
-// );
-
-// // Get all the cards with the status set to archive 
-// router.get('/archive',
-//   starWarsController.getHomeworld,
-//   (req, res) => res.status(200).json(res.locals.planet)
-// );
-
-// // Get all the cards with the status set to follow-up 
-// router.get('/follow',
-//   starWarsController.getFilm,
-//   (req, res) => res.status(200).json(res.locals.film)
-// );
-
 // Create a card
 router.post('/addCard',
   profileController.createCard,
   (req, res) => res.status(200).send("Job has been added")
 );
 
-// Update a card's status
+// Update a card
 router.put('/updateStatus',
   profileController.updateStatus,
   (req, res) => res.status(200).send("Updated the Status")
 );
 
-
 // // Delete a card
-// router.delete('/removeCard',
-//   starWarsController.addCharacter,
-//   (req, res) => res.sendStatus(200)
-// );
+router.delete('/removeCard',
+profileController.removeCard,
+(req, res) => res.status(200).send("Job listing has been removed")
+);
 
 module.exports = router;
