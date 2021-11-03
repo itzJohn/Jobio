@@ -13,22 +13,18 @@ class Profile extends Component {
       linkedin: "https://www.linkedin.com/",
       fetchedJob: false,
       jobs: [],
-      modalState: {
-        open: false,
-        type: null,
-        position: { top: 0, left: 0 },
-        id: null
-      }
+      stat: [0,0,0,0,0],
     };
   }
 
   componentDidMount() {
     fetch('/profile')
       .then(res => res.json())
-      .then((jobs) => {
+      .then(({jobs, stat}) => {
         if (!Array.isArray(jobs)) jobs = [];
         return this.setState({
           jobs,
+          stat,
           fetchedJob: true
         });
       })
@@ -45,7 +41,7 @@ class Profile extends Component {
 
     return (
       <section className="mainSection">
-        <ProfileHeader pic={this.state.profilePic} github={this.state.github} linkedin={this.state.linkedin}/>
+        <ProfileHeader stat={this.state.stat} pic={this.state.profilePic} github={this.state.github} linkedin={this.state.linkedin}/>
         <Body jobs={this.state.jobs} />
       </section>
     );

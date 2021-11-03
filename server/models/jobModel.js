@@ -19,8 +19,9 @@ const jobSchema = new Schema({
   title: {type: String, required: true},
   location: {type: String, required: true},
   company: {type: String, required: true},
-  status: String,
-  salary: Number,
+  status: {type: String, default: 'Considering'},
+  salary: {type: Number, default: 0},
+  notes: String,
 });
 
 const Job = mongoose.model('job', jobSchema);

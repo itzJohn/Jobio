@@ -4,6 +4,12 @@ const profileController = {};
 profileController.getJobs = async (req, res, next) => {
   try {
     const jobs = await Job.find({});
+    const considered = await Job.find({status: 'Considering'});
+    const applied = await Job.find({status: 'Applied'});
+    const process = await Job.find({status: 'In-Progess'});
+    const archive = await Job.find({status: 'Archived'});
+
+    res.locals.stat = [jobs.length, considered.length, applied.length, process.length, archive.length ]
     res.locals.jobs = jobs;
     return next();
   } catch (error) {
@@ -16,8 +22,8 @@ profileController.getJobs = async (req, res, next) => {
 
 profileController.createCard = (req, res, next) => {
   try {
-    const {title, location, company} = req.body;
-    Job.create({'title': title, 'location': location, 'company': company});
+    //const {title, location, company} = req.body;
+    Job.create(req.body);
     return next();
   } catch (error) {
     return next({

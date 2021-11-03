@@ -15,7 +15,12 @@ const App = props => {
           />
           <Route
             exact
-            path="/create"
+            path="/create/"
+            component={CreateJob}
+          />
+          <Route
+            exact
+            path="/create/:jobId"
             component={CreateJob}
           />
         </Switch>

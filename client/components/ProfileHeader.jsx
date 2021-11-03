@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-const ProfileHeader = ({pic,github,linkedin}) => {
-
+const ProfileHeader = ({pic,github,linkedin,stat}) => {
   return (
     <div className="profileHeader">
       <div className="right">
@@ -14,11 +13,11 @@ const ProfileHeader = ({pic,github,linkedin}) => {
         <a href={linkedin}>Youtube Icon</a>
         <br/>
         <h3>Job Search Tracker</h3>
-        <p>Considering:<span></span></p>
-        <p>Applied:<span></span></p>
-        <p>Interview Process:<span></span></p>
-        <p>Archived:<span></span></p>
-        <p>Total Applications:<span></span></p>
+        <p>Considering: <span>{stat[1]}</span></p>
+        <p>Applied: <span>{stat[2]}</span></p>
+        <p>Interview Process: <span>{stat[3]}</span></p>
+        <p>Archived: <span>{stat[4]}</span></p>
+        <p>Total Applications: <span>{stat[0]}</span></p>
 
       </div>
 

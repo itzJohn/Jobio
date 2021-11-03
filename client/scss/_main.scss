@@ -77,6 +77,21 @@ body {
   list-style-type: none;
 }
 
+.createJob {
+  font-size: 2em;
+  width: 400px;
+
+  .createJobFields {
+    display: flex;
+    justify-content: space-between;
+  }
+
+}
+
+input[type="text"]{
+  font-size: 14px;
+}
+
 button {
   min-width: 4em;
   padding: 0.4em 1em;

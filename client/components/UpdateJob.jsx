@@ -15,17 +15,16 @@ const useInput = init => {
 const statusData = ['Considering', 'Applied', 'In-Progess', 'Archived']
 
 const CreateJob = props => {
-  console.log(props)
-  const [ title, titleOnChange ] = useInput(props.location.title || '')
-  const [ company, companyOnChange ] = useInput(props.location.company || '')
-  const [ location, locationOnChange ] = useInput(props.location.location || '')
-  const [ salary, salaryOnChange ] = useInput(props.location.salary || '')
+  const [ title, titleOnChange ] = useInput('');
+  const [ company, companyOnChange ] = useInput('');
+  const [ location, locationOnChange ] = useInput('');
+  const [ salary, salaryOnChange ] = useInput('');
   const [ status, setStatus ] = useState(statusData[0])
-  const [ notes, notesOnChange ] = useInput(props.location.notes || '')
+  const [ notes, notesOnChange ] = useInput('');
   const [ missingError, setMissingError ] = useState(null);
 
   const handleStatusChange = e => {
-    setStatus(statusData[e.target.value]);
+    setStatus(speciesData[e.target.value]);
   };
 
   const statusOptions = statusData.map((ele, idx) => {
@@ -54,50 +53,16 @@ const CreateJob = props => {
         },
         body: JSON.stringify(body)
       })
-        .then (() => props.history.push('/'))
+        .then(resp => resp.json())
+        .then(data => {
+          console.log(data);
+        })
         .catch(err => console.log('CreateJob fetch /profile/addCard: ERROR: ', err));
     }
   };
 
-  const updateJob = (id) =>{
-    // check if name is empty
-    if (title === '' || company === '' || location === ''  ) {
-      setMissingError('required');
-    } else {
-      const body = {
-        title,
-        company,
-        location,
-        salary,
-        status,
-        notes,
-      };
-      fetch('/profile/updateStatus/?_id='+id, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'Application/JSON'
-        },
-        body: JSON.stringify(body)
-      })
-        .then (() => props.history.push('/'))
-        .catch(err => console.log('CreateJob fetch /profile/updateJob: ERROR: ', err));
-    }
-  }
+  const updateJob = () =>{
 
-  const removeJob = (id) =>{
-    // check if name is empty
-    if (!id) {
-      setMissingError('required');
-    } else {
-      fetch('/profile/removeCard/?_id='+id, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'Application/JSON'
-        },
-      })
-        .then (() => props.history.push('/'))
-        .catch(err => console.log('CreateJob fetch /profile/removeCard: ERROR: ', err));
-    }
   }
 
   // useEffect to clear Error when `title` is changed
@@ -152,8 +117,7 @@ const CreateJob = props => {
             </button>
           </Link>
           <button type="button" className="btnMain" onClick={saveJob}>Save</button>
-          <button type="button" className="btnMain" onClick={() => updateJob(props.match.params.jobId)}>Update</button>
-          <button type="button" className="btnMain" onClick={() => removeJob(props.match.params.jobId)}>Remove</button>
+          <button type="button" className="btnMain" onClick={updateJob}>Update</button>
         </div>
       </article>
     </section>
