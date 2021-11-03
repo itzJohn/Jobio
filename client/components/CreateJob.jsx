@@ -16,6 +16,7 @@ const CreateJob = props => {
   const [ title, titleOnChange ] = useInput('');
   const [ company, companyOnChange ] = useInput('');
   const [ location, locationOnChange ] = useInput('');
+  const [ missingError, setMissingError ] = useState(null);
 
   const saveJob = () => {
     // check if name is empty
@@ -27,7 +28,7 @@ const CreateJob = props => {
         company,
         location,
       };
-      fetch('/profile//addCard', {
+      fetch('/profile/addCard', {
         method: 'POST',
         headers: {
           'Content-Type': 'Application/JSON'
@@ -38,24 +39,21 @@ const CreateJob = props => {
         .then(data => {
           console.log(data);
         })
-        .then(() => {
-          props.history.push('/');
-        })
-        .catch(err => console.log('CreateJob fetch /api/character: ERROR: ', err));
+        .catch(err => console.log('CreateJob fetch /profile/addCard: ERROR: ', err));
     }
   };
 
   // useEffect to clear Error when `title` is changed
   useEffect(()=>{
     setMissingError(null);
-  }, [title]);
+  }, [title,company,title]);
 
   return (
     <section className="mainSection createCharContainer">
 
       <header className="pageHeader">
         <h2>Job Creator</h2>
-        <Link to="/profile" className="backLink">
+        <Link to="/" className="backLink">
           <button type="button" className="btnSecondary">
               Back your profile
           </button>
@@ -73,27 +71,27 @@ const CreateJob = props => {
 
         <div className="createJobFields">
           <label htmlFor="company">Company: </label>
-          <input name="company" placeholder="Google" value={title} onChange={companyOnChange} />
+          <input name="company" placeholder="Google" value={company} onChange={companyOnChange} />
           {missingError ? (<span className="errorMsg">{missingError}</span>) : null}
         </div>
 
         <div className="createJobFields">
           <label htmlFor="location">Location: </label>
-          <input name="location" placeholder="NYC" value={title} onChange={locationOnChange} />
+          <input name="location" placeholder="NYC" value={location} onChange={locationOnChange} />
           {missingError ? (<span className="errorMsg">{missingError}</span>) : null}
         </div>
 
         <div className="createCharButtonContainer">
-          <Link to="/profile" className="backLink">
+          <Link to="/" className="backLink">
             <button type="button" className="btnSecondary">
               Cancel
             </button>
           </Link>
-          <button type="button" className="btnMain" onClick={saveCharacter}>Save</button>
+          <button type="button" className="btnMain" onClick={saveJob}>Save</button>
         </div>
       </article>
     </section>
   );
 };
 
-export default withRouter(CreateCharacter);
+export default withRouter(CreateJob);

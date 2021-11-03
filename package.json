@@ -15,8 +15,7 @@
     "mongoose": "^6.0.12",
     "node": "^17.0.1",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-router-dom": "^5.3.0"
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
@@ -27,6 +26,9 @@
     "eslint": "^8.1.0",
     "html-webpack-plugin": "^5.5.0",
     "nodemon": "^2.0.14",
+    "react-hot": "0.0.1",
+    "react-router": "^5.2.1",
+    "react-router-dom": "^5.3.0",
     "sass": "^1.43.4",
     "sass-loader": "^12.3.0",
     "style-loader": "^3.3.1",

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import JobCards from './JobCards.jsx';
+import { withRouter } from 'react-router-dom';
+import Body from './Body.jsx';
 import ProfileHeader from './ProfileHeader.jsx';
 
 
@@ -12,7 +12,13 @@ class Profile extends Component {
       github: "https://github.com/",
       linkedin: "https://www.linkedin.com/",
       fetchedJob: false,
-      jobs: []
+      jobs: [],
+      modalState: {
+        open: false,
+        type: null,
+        position: { top: 0, left: 0 },
+        id: null
+      }
     };
   }
 
@@ -36,37 +42,14 @@ class Profile extends Component {
       </div>
     );
 
-    const { jobs } = this.state;
-
-    const jobCards = jobs.map((ele, i) => {
-      return (
-        <JobCards
-          key={ele._id}
-          info={ele}
-        />
-      );
-    });
 
     return (
       <section className="mainSection">
         <ProfileHeader pic={this.state.profilePic} github={this.state.github} linkedin={this.state.linkedin}/>
-        <header className="pageHeader">
-          <h2>Jobs</h2>
-          <Link to={'/create'}>
-            <button
-              type="button"
-              className="btnSecondary"
-            >
-              Create Character
-            </button>
-          </Link>
-        </header>
-        <div className="jobCardContainer">
-          {jobCards}
-        </div>
+        <Body jobs={this.state.jobs} />
       </section>
     );
   }
 }
 
-export default Profile;
+export default withRouter(Profile);

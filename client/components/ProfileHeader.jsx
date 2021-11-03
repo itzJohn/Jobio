@@ -14,7 +14,7 @@ const ProfileHeader = ({pic,github,linkedin}) => {
         <p>Considering:<span></span></p>
         <p>Applied:<span></span></p>
         <p>Interview Process:<span></span></p>
-        <p>Total Archived:<span></span></p>
+        <p>Archived:<span></span></p>
         <p>Total Applications:<span></span></p>
 
       </div>

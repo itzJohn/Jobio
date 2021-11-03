@@ -9,7 +9,8 @@ app.use(express.urlencoded({ extended: true }));
 
 
 // send index.html files
-app.get('/', (req, res) => res.sendFile(path.resolve(__dirname, '../client/index.html')))
+// app.get('/', (req, res) => res.sendFile(path.resolve(__dirname, '../client/index.html')))
+app.use(express.static(path.resolve(__dirname, '../client')));
 
 // profile page
 app.use('/profile', profileRouter);
