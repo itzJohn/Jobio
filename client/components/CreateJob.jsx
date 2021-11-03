@@ -49,17 +49,7 @@ const CreateJob = props => {
   }, [title,company,title]);
 
   return (
-    <section className="mainSection createCharContainer">
-
-      <header className="pageHeader">
-        <h2>Job Creator</h2>
-        <Link to="/" className="backLink">
-          <button type="button" className="btnSecondary">
-              Back your profile
-          </button>
-        </Link>
-      </header>
-
+    <section className="mainSection">
       <article className="card createChar">
         <h3>Enter your Job details</h3>
 

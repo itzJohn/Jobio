@@ -3,7 +3,10 @@ import React, { Component } from 'react';
 const ProfileHeader = ({pic,github,linkedin}) => {
 
   return (
-    <div className="profileHeader primary">
+    <div className="profileHeader">
+      <div className="right">
+        <img src={pic} />
+      </div>
       <div className='left'>
         <h3>Social Media</h3>
         <a href={github}>GitHub Icon</a>
@@ -18,9 +21,7 @@ const ProfileHeader = ({pic,github,linkedin}) => {
         <p>Total Applications:<span></span></p>
 
       </div>
-      <div className="right">
-        <img src={pic} />
-      </div>
+
     
     </div>
   );

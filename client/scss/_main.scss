@@ -17,19 +17,24 @@ body {
 
 .mainSection{
   width: 1200px;
+  display: flex;
+  justify-content: center;
 }
 
 .primary { background-color: $primary; }
 .secondary { background-color: $secondary; }
 
+
+
 .profileHeader{
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 
   .left {
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
 
   img {
@@ -37,10 +42,17 @@ body {
   }
 
   .right {
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
+.ProfileBodyHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .jobCardContainer {
   display: grid;
