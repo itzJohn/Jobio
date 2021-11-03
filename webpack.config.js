@@ -2,18 +2,19 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: process.env.NODE_ENV,
+  entry: './client/index.js',
   output: {
-    path: __dirname + 'build',
+    path: __dirname + '/build',
     filename: 'bundle.js',
   },
   devServer: {
     static: {
-        directory: __dirname + 'public'
+        directory: __dirname + '/public'
     },
     compress: true,
     port: 8080,
     proxy: {
-        '/api': 'http://localhost:3000',
+        '/': 'http://localhost:3000',
     },
   },
   module: {
@@ -28,10 +29,18 @@ module.exports = {
                 },
             },
         },
+        {
+          test: /\.s[ac]ss$/i,
+          use: [
+              "style-loader",
+              "css-loader",
+              "sass-loader",
+          ],
+      },
     ]
   },
   plugins: [new HtmlWebpackPlugin({
-    template: __dirname + '/index.html',
+    template: __dirname + '/client/index.html',
     filename: 'index.html',
     inject: 'body'
   })],
