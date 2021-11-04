@@ -5,8 +5,13 @@ const router = express.Router();
 
 // Get all the cards
 router.get('/',
-profileController.getJobs,
+  profileController.getJobs,
   (req, res) => res.status(200).json({jobs :res.locals.jobs, stat: res.locals.stat})
+);
+
+router.get('/filter',
+  profileController.filter,
+  (req, res) => res.status(200).json(res.locals.jobs)
 );
 
 // Create a card

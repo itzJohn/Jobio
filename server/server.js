@@ -5,7 +5,7 @@ const app = express();
 const PORT = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+var cors = require('cors') 
 
 
 // send index.html files
@@ -15,11 +15,13 @@ app.use(express.static(path.resolve(__dirname, '../client')));
 // profile page
 app.use('/profile', profileRouter);
 
+app.use(cors());
+
 
 
 
 // catch-all route handler for any requests to an unknown route
-app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));
+//app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));
 
 // Default middleware handler
 app.use((err, req, res, next) => {

@@ -15,7 +15,7 @@ const ProfileHeader = ({pic,github,linkedin,stat}) => {
         <h3>Job Search Tracker</h3>
         <p>Considering: <span>{stat[1]}</span></p>
         <p>Applied: <span>{stat[2]}</span></p>
-        <p>Interview Process: <span>{stat[3]}</span></p>
+        <p>In-Progress: <span>{stat[3]}</span></p>
         <p>Archived: <span>{stat[4]}</span></p>
         <p>Total Applications: <span>{stat[0]}</span></p>
 

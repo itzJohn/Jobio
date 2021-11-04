@@ -15,6 +15,8 @@ class Profile extends Component {
       jobs: [],
       stat: [0,0,0,0,0],
     };
+
+    this.filter = this.filter.bind(this);
   }
 
   componentDidMount() {
@@ -31,6 +33,22 @@ class Profile extends Component {
       .catch(err => console.log('Profile.componentDidMount: get jobs cards: ERROR: ', err));
   }
 
+  filter(type){
+    // check if name is empty
+    if (type === 'All') {
+      this.componentDidMount();
+    } else {
+    fetch('/profile/filter?type=' + type)
+      .then(res => res.json())
+      .then(jobs => {
+        console.log(jobs)
+        if (!Array.isArray(jobs)) jobs = [];
+        return this.setState({jobs});
+      })
+      .catch(err => console.log('CreateJob fetch /profile/updateJob: ERROR: ', err));
+    }
+  }
+
   render() {
     if (!this.state.fetchedJob) return (
       <div>
@@ -42,7 +60,7 @@ class Profile extends Component {
     return (
       <section className="mainSection">
         <ProfileHeader stat={this.state.stat} pic={this.state.profilePic} github={this.state.github} linkedin={this.state.linkedin}/>
-        <Body jobs={this.state.jobs} />
+        <Body jobs={this.state.jobs} filter={this.filter} />
       </section>
     );
   }

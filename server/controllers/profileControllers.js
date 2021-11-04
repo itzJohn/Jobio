@@ -6,7 +6,7 @@ profileController.getJobs = async (req, res, next) => {
     const jobs = await Job.find({});
     const considered = await Job.find({status: 'Considering'});
     const applied = await Job.find({status: 'Applied'});
-    const process = await Job.find({status: 'In-Progess'});
+    const process = await Job.find({status: 'In-Progress'});
     const archive = await Job.find({status: 'Archived'});
 
     res.locals.stat = [jobs.length, considered.length, applied.length, process.length, archive.length ]
@@ -15,6 +15,19 @@ profileController.getJobs = async (req, res, next) => {
   } catch (error) {
     return next({
       log: `profileController.getJobs: ERROR: ${error}`,
+      message: { error },
+    });
+  }
+};
+
+profileController.filter = async (req, res, next) => {
+  try {
+    const result = await Job.find({status: req.query.type});
+    res.locals.jobs = result;
+    return next();
+  } catch (error) {
+    return next({
+      log: `profileController.filter: ERROR: ${error}`,
       message: { error },
     });
   }

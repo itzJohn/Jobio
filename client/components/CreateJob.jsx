@@ -12,7 +12,7 @@ const useInput = init => {
   return [ value, onChange ];
 };
 
-const statusData = ['Considering', 'Applied', 'In-Progess', 'Archived']
+const statusData = ['Considering', 'Applied', 'In-Progress', 'Archived']
 
 const CreateJob = props => {
   console.log(props)
