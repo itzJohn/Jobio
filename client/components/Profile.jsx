@@ -33,6 +33,8 @@ class Profile extends Component {
       .catch(err => console.log('Profile.componentDidMount: get jobs cards: ERROR: ', err));
   }
 
+  //test api
+
   filter(type){
     // check if name is empty
     if (type === 'All') {
